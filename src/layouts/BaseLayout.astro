@@ -1,7 +1,6 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import '../styles/global.css';
 import '../styles/pages.css';
 const {title, desc, pubDate} = Astro.props;
 
@@ -35,7 +34,7 @@ const formattedDate = formatter.format(pubDate);
     <div class="page-content">
       <div class="frontmatter">
         <h1>{title}</h1>
-        <p class="italic">{desc}</p>
+        <p class="italic subtitle">{desc}</p>
         <h3 class="courier-date">{formattedDate}</h3>
       </div>
 
