@@ -36,6 +36,12 @@ p {
     font-style: italic;
 }
 
+.tertiary {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+    font-size: 1em;
+}
+
 @media screen and (max-width: 880px) {
     .page-content {
         margin: 0px 10%;
