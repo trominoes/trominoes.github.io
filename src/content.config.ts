@@ -11,7 +11,8 @@ const projects = defineCollection({
       desc: z.string(),
       url: z.string(),
       author: z.string(),
-      tags: z.array(z.string())
+      tags: z.array(z.string()),
+      display: z.boolean().default(true)
     })
 });
 // Export a single `collections` object to register your collection(s)

@@ -1,0 +1,57 @@
+---
+const {title} = Astro.props;
+---
+
+<style>
+
+  header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100px;
+      padding: 50px 0%;
+      gap: 0rem;
+      background-color: #f1f5f9;
+    }
+
+  header a {
+    display: inline-block;
+  }
+
+  header img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain; /* Ensures the image maintains its aspect ratio */
+  }
+
+  .small-text {
+    font-size: 0.8em;
+  }
+
+  .courier-heading {
+    color: #999999;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1em;
+    font-style: normal;
+}
+
+  a:visited {
+    color: #999999;
+  }
+
+  @media screen and (max-width: 600px) {
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 0%;
+      gap: 0rem;
+    }
+  }
+
+</style>
+
+<header>
+    <span class="courier-heading"><a href="/">Home</a>&nbsp;/ </span>
+</header>

@@ -2,23 +2,46 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
-const {pageTitle} = Astro.props;
+import '../styles/pages.css';
+const {title, desc, pubDate} = Astro.props;
+
+const formatter = new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric"
+});
+
+const formattedDate = formatter.format(pubDate);
 ---
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/trominoes.png" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
+			rel="stylesheet"
+		/>
+    <title>{title}</title>
+    <script
+			src="https://kit.fontawesome.com/db289afb84.js"
+			crossorigin="anonymous"></script>
   </head>
   <body>
-    <Header />
-    <h1>{pageTitle}</h1>
-    <slot />
+    <Header title={title}/>
+    <div class="page-content">
+      <div class="frontmatter">
+        <h1>{title}</h1>
+        <p class="italic">{desc}</p>
+        <h3 class="courier-date">{formattedDate}</h3>
+      </div>
+
+      <slot />
+    </div>
+    <div style="height: 10vh;"></div>
     <Footer />
-    <script>
-      import "../scripts/menu.js";
-    </script>
   </body>
 </html>

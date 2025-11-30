@@ -10,7 +10,13 @@ body {
 }
 
 .page-body {
-    padding: 0px 7.5%;
+    padding: 0px 20%;
+}
+
+@media screen and (max-width: 880px) {
+    .page-body {
+        padding: 0px 10%;
+    }
 }
 
 * {
@@ -40,8 +46,8 @@ p, .secondary {
 }
 
 .about-text {
-    font-size: 1.2em;
-    line-height: 1.6;
+    font-size: 1.1em;
+    line-height: 1.7;
 }
 
 .center {
@@ -66,3 +72,16 @@ hr {
 .intro-hr {
     background-color: white;
 }
+
+
+
+.reveal {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+  }
+  
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }

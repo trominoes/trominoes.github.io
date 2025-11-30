@@ -3,7 +3,7 @@ import Footer from "../components/Footer.astro";
 import Projects from "../components/Projects.astro";
 import Skills from "../components/Skills.astro";
 import "../styles/global.css";
-import "../styles/interactiveheader.css";
+import "../styles/interactiveheadernew.css";
 const pageTitle = "trominoes";
 ---
 
@@ -18,20 +18,18 @@ const pageTitle = "trominoes";
 			href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
 			rel="stylesheet"
 		/>
-		<script
-			src="https://kit.fontawesome.com/db289afb84.js"
-			crossorigin="anonymous"></script>
+		<script src="https://kit.fontawesome.com/db289afb84.js" crossorigin="anonymous"></script>
 		<title>{pageTitle}</title>
 	</head>
 	<body>
 		<div id="main">
 			<div class="header">
-				<div class="intro-elements">
+				<!-- <div class="intro-elements">
 					<h1 class="intro-title">Minoo Jang</h1>
-					<p class="intro-slug">artist, engineer, stanford student</p>
+					<p class="intro-slug">engineer, artist, stanford student</p>
 					<p class="intro-slug">---</p>
 				</div>
-
+				-->
 				<svg
 					class="page-down-arrow"
 					xmlns="http://www.w3.org/2000/svg"
@@ -72,6 +70,7 @@ const pageTitle = "trominoes";
 						<script>
 							import "../scripts/isometric.js";
 						</script>
+						
 					</div>
 				</div>
 			</div>
@@ -80,25 +79,24 @@ const pageTitle = "trominoes";
 				<hr />
 				<div class="page-body">
 					<br />
-
-					<h2 style="font-size: 1.8em;">Hello!</h2>
-					<p class="about-text">
+					<h2 class="reveal" style="font-size: 1.8em;">Hi!</h2>
+					<p class="about-text reveal">
 						My name is <span class="bold">Minoo</span> and I'm an <span
 							class="bold"
 						>
-							undergrad (’28) at Stanford University.</span
+							engineer, artist, and undergrad (’28) at Stanford University.</span
 						>
-						When asked about my major, I often reply with questions of
-						my own: Math? Mechanical Engineering? CS, Earth Systems,
-						Design? In truth, I don't yet know exactly what I want to
-						do or how I should spend the majority of my time. That's
-						why I made this website&mdash;to help me map out the person
-						I want to be; to create and play and learn freely; to capture
-						in a portfolio my recent experiences, my thoughts,
-						and someday, my discovered personal truths and answers.
+						
+					</p>
+					<p class="about-text reveal">
+						I'm pursuing a mechanical engineering major, though my interests vary widely. 
+						That's why I made this website&mdash;to help me map out the person
+						I want to be; to create and learn freely; to capture
+						in a portfolio my recent projects, experiences,
+						and discovered personal truths.
 					</p>
 
-					<p class="about-text italic">Send me mail at <a href="mailto:minooj@stanford.edu">minooj@stanford.edu</a>.</p>
+					<p class="about-text italic reveal">Send me mail at <a href="mailto:minooj@stanford.edu">minooj@stanford.edu</a>.</p>
 
 					<br />
 					<p class="center courier-heading">--- Projects ---</p>
@@ -150,6 +148,22 @@ const pageTitle = "trominoes";
 						startAnimation();
 					}, 10); // Throttle to run once every 10ms
 				}
+			});
+
+			// for scroll-to-reveal elements
+			document.addEventListener("DOMContentLoaded", () => {
+			const elements = document.querySelectorAll(".reveal");
+
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add("visible");
+					observer.unobserve(entry.target);
+				}
+				});
+			});
+
+			elements.forEach(el => observer.observe(el));
 			});
 		</script>
 	</body>

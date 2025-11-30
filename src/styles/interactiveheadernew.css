@@ -1,0 +1,115 @@
+.header {
+    display: flex;
+    /* grid-template-columns:repeat(5, 1fr);
+    gap: 30px; */
+    justify-content: center;
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: #f1f5f9;
+    height: max(650px, 100vh);
+    padding: 0 7%;
+    background: radial-gradient(ellipse at center, rgba(24, 24, 26, 1) 40%, rgba(12,12,13,1) 100%);
+  }
+
+.non-header {
+    position: relative;
+    background-color: #f1f5f9;
+    /* TODO: give minimum header height */
+    margin-top: max(650px, 100vh);
+    z-index: 11;
+}
+
+.graphic {
+    grid-column: span 3;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 60%;
+    align-items: center;
+}
+
+.graphic-container {
+    display: flex;
+    justify-content: center;
+
+    width: 100%;
+    aspect-ratio: 1;
+}
+
+#name-graphic {
+    animation-play-state: running;
+    animation: float-updown 2.5s ease-in-out infinite; 
+    overflow: hidden;
+}
+
+.pause-animation {
+    animation-play-state: paused;
+}
+
+.graphic-click {
+    position: absolute;
+    top: 25%;
+    left: 80%;
+}
+
+.click-arrow {
+    position: absolute;
+    top: 28%;
+    left: 80%;
+}
+
+.page-down-arrow {
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 110px;
+    height: 110px;
+    color: #27272a;
+    z-index: 100;
+}
+
+@keyframes float-updown {
+    0% {
+      transform: translateY(0);  /* Start position */
+    }
+    50% {
+      transform: translateY(-10px);  /* Move up */
+    }
+    100% {
+      transform: translateY(0);  /* Return to start position */
+    }
+}
+
+@media screen and (max-width: 880px) {
+    .header {
+        padding: 0%;
+    }
+
+    .graphic {
+        overflow: visible;
+    }
+
+    .graphic-click {
+        top: 20%;
+        left: 70%;
+    }
+    .click-arrow {
+        top: 23%;
+        left: 70%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+
+    .graphic-click {
+        display: none;
+    }
+    .click-arrow {
+        display: none;
+    }
+
+}
