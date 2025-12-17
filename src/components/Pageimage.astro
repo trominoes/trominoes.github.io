@@ -1,0 +1,27 @@
+---
+const { src, caption } = Astro.props;
+---
+
+<style>
+
+    .image-box {
+        width: 90%;
+        margin: 35px 5%;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    .caption {
+        font-style: italic;
+        font-size: 0.9em;
+        margin-left: 5px;
+    }
+
+</style>
+
+<div class="image-box">
+    <img src={src} loading="lazy" decoding="async"/>
+    <p class="caption">{caption}</p>
+</div>

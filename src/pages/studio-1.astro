@@ -1,11 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 const title = "Studio 1: Architecture";
-const desc = "Reviewing what I made in this spring quarter seminar"
-const pubDate = 2025-6-1
+const desc = "Reviewing what I made in this spring quarter seminar";
+const pubDate = new Date("2025-06-01");
 
 ---
-<BaseLayout title={title} desc={desc} date={pubDate}>
+<BaseLayout title={title} desc={desc} pubDate={pubDate}>
   <img src="/DSC05292.jpeg" />
   <p>In freshman year, I took an intensive introduction to architecture class with an emphasis 
     on creative exploration and making. I learned how to draw plans and sections, as well assemble

@@ -8,6 +8,7 @@ const formatter = new Intl.DateTimeFormat("en-US", {
 });
 
 const formattedDate = formatter.format(date);
+const url = yaml.url || null;
 ---
 
 <style>
@@ -15,21 +16,24 @@ const formattedDate = formatter.format(date);
         text-decoration: none;
         color: black;
     }
+
+    .has-link {
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+
+    .has-link:hover {
+        transform: scale(1.02);
+    }
     
     .project-tile {
         height: 100%;
-        cursor: pointer;
         padding: 30px;
         box-sizing: border-box;
         border-radius: 12px;
         border: 1px solid #bbb;
         background-color: #f3f7fb;
         box-shadow: 0 5px 10px rgba(100, 100, 100, 0.3);
-        transition: transform 0.2s ease;
-    }
-
-    .project-tile:hover {
-        transform: scale(1.02);
     }
 
     .tile-title {
@@ -47,10 +51,22 @@ const formattedDate = formatter.format(date);
     }
 
 </style>
-<a class="tile-link" href={yaml.url}>
-    <div class="project-tile">
-        <h2 class="tile-title">{yaml.title}</h2>
-        <p class="tertiary tile-date">{formattedDate}</p>
-        <p class="tile-desc">{yaml.desc}</p>
+
+
+{url ? (
+    <a class="tile-link" href={url}>
+        <div class="project-tile has-link">
+            <h2 class="tile-title">{yaml.title}</h2>
+            <p class="tertiary tile-date">{formattedDate}</p>
+            <p class="tile-desc">{yaml.desc}</p>
+        </div>
+    </a>
+  ) : (
+    <div class="tile-link">
+        <div class="project-tile">
+            <h2 class="tile-title">{yaml.title}</h2>
+            <p class="tertiary tile-date">{formattedDate}</p>
+            <p class="tile-desc">{yaml.desc}</p>
+        </div>
     </div>
-</a>
+  )}

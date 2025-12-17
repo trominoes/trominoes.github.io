@@ -1,20 +1,86 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Image from '../components/Pageimage.astro';
 const title = "Camera Lens Filters";
-const desc = "The iterative design path I took to creating new photos"
-const pubDate = 2025-11-29
+const desc = "CAD designs for a resin printed camera lens filter with custom thread tolerances";
+const pubDate = new Date("2025-11-29");
 
 ---
-<BaseLayout title={title} desc={desc} date={pubDate}>
+<BaseLayout title={title} desc={desc} pubDate={pubDate}>
   <p>I took up photography late in my senior year of high school, and since then have invested myself 
     in taking pictures not just in novel places but in novel ways. I recently discovered that covering
     part of a camera lens leads to interesting background blur effects, and there are several
     online creators and sellers who make these products. This is my own attempt to create and experiment
-    with such lens filters, and an excuse to learn resin printing at the university's Product Realization
-    Lab.
+    with such lens filters, and an excuse to learn resin printing at Stanford's Product Realization Lab.
   </p>
-  <p class="italic">[A full project breakdown coming soon]</p>
-  <img src="/Lens Filter CAD.png" />
-  <img src="/Lens Filter Demo.png" />
+  
+  <Image src="/Swirl Filter.png" caption="One of the lens filter designs I implemented, called 'swirl'."></Image>
+  
+  <h2>Design decisions</h2>
+  <p>
+    For this project, I wanted to experiment creating lens filters of my own without incorporating optical
+    glass (I leave this for future work). Instead, I wanted to fabricate a unified filter body that could 
+    be easily attached to the front of my camera and achieve a desired photographic effect.
+  </p>
+  <p> 
+    Modern camera lenses have an internal thread at the front, where filters, adapters, and other attachments
+    can screw on. Creating an external thread that could fit in this well was a key focus of this project.
+  </p>
+  <p>
+    The fine details of a filter and its threading could only be achieved with very high resolution, and 
+    for optical performance should be printed or painted black. For these reasons, I settled on using 
+    resin printing with a black resin for prototyping.
+  </p>
+
+  <h2>Thread tolerances</h2>
+  <p>
+    Camera lenses have various thread diameters and pitches, which describe how wide and tall
+    the spiral forming the thread is. A standard, moderately sized lens has a pitch of 0.75mm, and my
+    lens (a Sigma 18-50mm f/2.8) has a diameter of 55mm. With these measurements in hand, I wrote
+    an <a href="https://www.autodesk.com/support/technical/article/caas/sfdcarticles/sfdcarticles/Custom-Threads-in-Fusion-360.html" target="_blank" rel="noopener noreferrer">XML file</a> 
+    to create a <a href="https://github.com/toddmunro/Fusion-360-Lens-Filter-Threads/tree/master?tab=readme-ov-file" target="_blank" rel="noopener noreferrer">custom thread profile</a> 
+    in Fusion, which does not offer in-app selection of these parameters beyond limited presets. 
+  </p>
+  <p>
+    I further used this <a href="http://theoreticalmachinist.com/Threads-MetricMProfile.aspx" target="_blank" rel="noopener noreferrer">thread calculator</a> 
+    to compute different thread tolerances for the profile; I returned to this tool several times
+    during prototyping to increase tolerances for threads.
+  </p>
+
+  <h2>Other features</h2>
+  <p>
+    To allow photographers to easily screw in and remove the filter, I added little ridges to the top
+    and sides
+    of the model (see CAD design above). I also added an external thread at the top of the filter, to help
+    with storage of the filters and in case anyone wishes to combine these with additional attachments.
+  </p>
+  <p>
+    In addition to the swirl filter, I created a slit filter, wave filter, and heart filter, intended
+    to make the background blur (bokeh) of a photo appear as that specific shape.
+  </p>
+
+  <h2>Samples and conclusions</h2>
+  <p>
+    Here's a demonstration of the swirl filter! The swirling effect of the photo is clearly observable,
+    and is not the product of lens distortion itself but the light that is blocked by the filter in 
+    different regions of the field of view.
+  </p>
+  <Image src="/DSC01673.jpeg"></Image>
+  <p>
+    In comparison, here's a sample from the slit filter:
+  </p>
+  <Image src="/DSC01667.jpeg"></Image>
+  <p>
+    With this prototype, the slit was made too narrow so it unintentionally blocks the camera 
+    sensor's field of view. However, it still provides for a nice effect in the bokeh!
+  </p>
+
+  <p>
+    To conclude: I learned lots about resin printing and thread tolerances through these lens filters.
+    Because of the involved post-processing for resin prints, I haven't been able to create all of the filter
+    designs yet, and would like to pursue that next quarter. I'm encouraged by the prototype results
+    with the slit and swirl filter, and see an opportunity here to apply physics of light concepts to 
+    more work with camera lenses in the future!
+  </p>
 
 </BaseLayout>
