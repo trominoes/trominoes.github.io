@@ -3,25 +3,59 @@ const { src, caption } = Astro.props;
 ---
 
 <style>
+.image-modal-wrapper {
+  width: 90%;
+  margin: 35px 5%;
+}
 
-    .image-box {
-        width: 90%;
-        margin: 35px 5%;
-    }
+.image-thumbnail {
+  width: 100%;
+  cursor: pointer;
+}
 
-    img {
-        width: 100%;
-    }
-
-    .caption {
-        font-style: italic;
-        font-size: 0.9em;
-        margin-left: 5px;
-    }
+.caption {
+  font-style: italic;
+  font-size: 0.9em;
+  margin-left: 5px;
+}
 
 </style>
 
-<div class="image-box">
-    <img src={src} loading="lazy" decoding="async"/>
+  <div class="image-box">
+    <img
+      src={src}
+      class="image-thumbnail"
+      loading="lazy"
+      decoding="async"
+    />
     <p class="caption">{caption}</p>
-</div>
+  </div>
+
+  <script>
+    // @ts-nocheck
+
+    document.querySelectorAll('.image-box').forEach(box => {
+        
+        box.addEventListener('click', () => {
+            const modal = document.querySelector('.modal');
+            const modalImage = document.querySelector('.modal-image');
+            const img = box.querySelector('img');
+            const spinner = document.querySelector('.spinner');
+
+            modal.classList.add('open');
+            modalImage.src = img.src;
+            document.body.classList.add('no-scroll');
+        
+            spinner.style.visibility = 'visible'; // Show spinner
+            spinner.style.opacity = 1; // Make spinner visible
+
+            // Once the image is loaded, hide the spinner and loading text, then fade in the image
+            modalImage.onload = () => {
+                spinner.style.visibility = 'hidden'; // Hide spinner
+                spinner.style.opacity = 0;
+                modalImage.style.opacity = 1; // Fade in the image
+            };
+        });
+    });
+  </script>
+  

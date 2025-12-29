@@ -11,8 +11,8 @@ const formatter = new Intl.DateTimeFormat("en-US", {
 });
 
 const formattedDate = formatter.format(pubDate);
-
 ---
+
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -39,9 +39,39 @@ const formattedDate = formatter.format(pubDate);
         <h3 class="courier-date">{formattedDate}</h3>
       </div>
 
+      <div class="modal">
+        <span class="close-btn" aria-label="Close image">&times;</span>
+        <img class="modal-image" />
+      <div class="spinner" style="display: none;"></div>
+      </div>
+
       <slot />
     </div>
     <div style="height: 10vh;"></div>
     <Footer />
   </body>
 </html>
+
+<script>
+  // @ts-nocheck
+  document.addEventListener('DOMContentLoaded', () => {
+      const modal = document.querySelector('.modal');
+      const closeBtn = document.querySelector('.close-btn');
+      const modalImage = document.querySelector('.modal-image');
+  
+      if (!modal || !closeBtn) return;
+      
+      function closeModal() {
+        modal.classList.remove('open');
+        document.body.classList.remove('no-scroll');
+        modalImage.style.opacity = 0;
+      }
+      closeBtn.addEventListener('click', closeModal);
+  
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+    });
+
+  
+</script>

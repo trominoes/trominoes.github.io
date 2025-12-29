@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Image from '../components/Pageimage.astro';
+const title = "Arduino Tone Matrix";
+const desc = "And an overview of the E40M labs of fall quarter";
+const pubDate = new Date("2025-12-17");
+
+---
+<BaseLayout title={title} desc={desc} pubDate={pubDate}>
+  <p class="italic">
+    [Video demo coming soon!]
+  </p>
+  <p>In fall quarter of sophomore year, I enrolled in ENGR 40M, a class intended to be Stanford's introduction
+    to making in electrical engineering. It lived up to its billing, being not just a crash course in
+    basic circuits and E&M concepts but also an opportunity to build cool circuits of our own in weekly three-hour labs.
+  </p>
+  <p>
+    For me, these labs were the highlight of the course and quarter. We started off by building a solar-powered
+    USB charger, then a 'useless box' with a motor and switches that would turn itself off when a user turned it on,
+    and even an electrocardiogram (EKG) that measured heart rate through two electrodes with filters.
+  </p>
+  <h2>Developing the Tone Matrix</h2>
+  <p>
+    In one of the later labs of the quarter, we were tasked with soldering in 64 LED's into
+    an 8x8 grid of a custom PCB. This grid would be controlled by an Arduino Mini to light up
+    in a certain pattern. However, since an Arduino does not have a sufficient number of pins
+    to individually control 64 different LED's, we used time division multiplexing to accomplish
+    the appearance of all lights being simultaneously controlled. In short, voltage is only
+    sent to one row at a time, but cycling through the rows at sufficient speed gives the illusion 
+    that all rows are on. 
+  </p>
+  <Image caption="Image coming soon!"></Image>
+  <p>
+    As shown in the above diagram, 8 Arduino pins are connected to the gates of nMOS transistors, with 
+    all source terminals on the power rail. Meanwhile, each column is connected (in series with a resistor) 
+    to an Arduino pin set at either VCC or GND voltage. When the row provides high voltage and the end
+    of the column is set to low voltage, current runs through the diode and it emits light. When the end of
+    the column is also set to high voltage, no current flows and the diode remains off. Thus, we get 
+    individual control over all of the LED's in that row; flashing through the rows lets us control all 64
+    LED's.
+  </p>
+  <p>I chose to extend this LED grid project by including two more components: a joystick with push button
+    for input, and a speaker. When I took the introductory programming course CS106B last year, I completed
+    an assignment implementing a twelve-tone matrix in C++. I wanted to achieve a similar outcome with the
+    LED grid, only in analog. So I wrote some Arduino and Python code to create this eight-tone matrix!
+  </p>
+  <p>
+    Through the project, I learned about reading potentiometers, switch debouncing, working with analog
+    audio, and more. Unfortunately, I couldn't handle audio frequency generation directly on the Arduino,
+    so the state of the grid must be transmitted from the Arduino to my computer, where the audio is 
+    procedurally generated and sent back to the circuit board speaker. Working with a microcontroller
+    like Daisy Seed&mdash;as I will in the upcoming guitar pedal project&mdash;might enable implementation
+    entirely on the circuit board itself.
+  </p>
+</BaseLayout>
