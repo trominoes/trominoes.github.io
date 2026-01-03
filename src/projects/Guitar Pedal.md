@@ -1,6 +1,6 @@
 ---
 title: 'Guitar pedal'
-pubDate: 2025-12-17
+pubDate: 2026-01-27
 desc: "Designing and fabricating PCB's with KiCad and laser rastering for guitar pedal with digital effects [link coming soon]"
 url: ""
 author: 'Minoo Jang, Nathan Godsey'
